@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"strings"
 )
 
@@ -81,4 +82,31 @@ func main() {
 		return
 	}
 	fmt.Println("height <= 100")
+
+	var a, b, c float64
+	fmt.Print("Введите коэффициенты a, b, c: ")
+	_, err := fmt.Scan(&a, &b, &c)
+	if err != nil {
+		fmt.Println("Ошибка ввода:", err)
+		return
+	}
+
+	if a == 0 {
+		fmt.Println("Это не квадратное уравнение")
+		return
+	}
+
+	D := b*b - 4*a*c
+	fmt.Printf("Дискриминант: %.2f\n", D)
+
+	if D > 0 {
+		x1 := (-b + math.Sqrt(D)) / (2 * a)
+		x2 := (-b - math.Sqrt(D)) / (2 * a)
+		fmt.Printf("Два корня: x1 = %.2f, x2 = %.2f\n", x1, x2)
+	} else if D == 0 {
+		x := -b / (2 * a)
+		fmt.Printf("Один корень: x = %.2f\n", x)
+	} else {
+		fmt.Println("Корней нет")
+	}
 }
