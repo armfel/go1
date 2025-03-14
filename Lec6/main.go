@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
 	// for init; condition; post {
@@ -42,7 +45,7 @@ func main() {
 	}
 	fmt.Println("По идее выше треугольник")
 
-	//Иногда бывает плохо. С лейблами лучше
+	//Иногда бывает плохо. С лейблами лучше. Лейблы - это синтаксический сахар
 outer:
 	for i := 0; i <= 2; i++ {
 		for j := 1; j <= 3; j++ {
@@ -51,5 +54,36 @@ outer:
 				break outer // Хочу чтобы вообще все циклы (внешние тоже остановились)
 			}
 		}
+	}
+
+	//Модификации цикла for
+	//1. Классический цикл while do
+	var loopVar int = 0
+	// while (loopVar < 10){
+	// 	...
+	// 	loopVar++
+	// }
+	for loopVar < 10 {
+		fmt.Printf("In while like loop %d\n", loopVar)
+		loopVar++
+	}
+	//2. Классический бесконечный цикл
+	var password string
+outer2:
+	for {
+		fmt.Print("Insert password: ")
+		fmt.Scan(&password)
+		if strings.Contains(password, "1234") {
+			fmt.Println("Weak password. Try again")
+			continue
+		} else {
+			fmt.Println("Password Accepted")
+			break outer2
+		}
+	}
+
+	//3. Цикл с множественными переменными цикла
+	for x, y := 0, 1; x <= 10 && y <= 12; x, y = x+1, y+2 {
+		fmt.Printf("%d + %d = %d\n", x, y, x+y)
 	}
 }
