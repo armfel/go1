@@ -7,6 +7,7 @@ func main() {
 	var price int
 	fmt.Scan(&price)
 
+	// В switch-case запрещены дублирующиеся условия в case'ах
 	switch price {
 	case 100:
 		fmt.Println("First case")
